@@ -5,4 +5,4 @@ Es un ejercicio de JavaScript para practicar los setIntervals.
 Clicka en los patitos para "matarlos".
 
 
-![Screenshot][https://github.com/Dadvanced/ejercicio_patitos/blob/master/ejercicio%20patitos/images/duckSS.png]
+![Screenshot](https://github.com/Dadvanced/ejercicio_patitos/blob/master/ejercicio%20patitos/images/duckSS.png)
