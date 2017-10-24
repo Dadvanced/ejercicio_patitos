@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS</title>
+
+    <style>
+	    #agua {
+	      width: 400px;
+	      height: 100px;
+	      background-color: #206DF2;
+	    }
+
+	    #patos { /*capa donde se añadirán los patos */
+	    	width:400px;
+	      	height: 40px;
+	    }
+
+	    .duck {
+	    	position: absolute;
+	    	width: 30px; /* anchura */
+	    	height: 30px; /* altura */
+	    	top: 25px; /* posición vertical */
+	    	left: 5px; /* posición horizontal */
+	    	border-radius: 40px;
+	    	background-image: url(images/duck.png);
+        background-repeat: no-repeat;
+	    }
+	          
+    </style>
+    <!-- ///////////////////////////////////////////////SCRIPT///////////////////////////////////// -->
+    <script>
+    	var creaPatos;
+      	var capaPatos;
+      	var patosHuidos = 0; //contaremos los patos que huyen
+      	var contador = 0; //usaremos la variable para controlar el ID de los patitos
+
+      	window.onload = function() {
+      		creaPatos = setInterval(drawDuck, 1000);
+      	 	var muevePatos = setInterval(mover, 50);
+      	}
+
+      	function drawDuck() {
+      	 	contador++;
+      	 	capaPatos = document.getElementById("patos"); /*capa donde se añadirán los patos */
+      		duck = document.createElement("div");          	
+          	duck.className = "duck";
+          	duck.id = "duck" + contador;
+          	duck.setAttribute("onclick", "deleteDuck(this)");
+          	capaPatos.appendChild(duck);
+
+          	if (contador == 30) {
+          		clearInterval(creaPatos);
+          	}
+       	}
+
+
+       	function mover() {
+       		patos = document.getElementsByClassName("duck");
+
+    		Array.from(patos).forEach(function(patito) {
+    			var patitoLeft = patito.offsetLeft;
+
+    			if (patitoLeft < 400) {
+    				patito.style.left = patitoLeft + 2 + "px";
+    			} else {
+    				//si el patito llega al final, se elimina y se añade al contador que 1 pato ha huído.
+    				patosHuidos++;
+    				document.getElementById("contador").innerHTML = patosHuidos;
+    				deleteDuck(patito);
+    			}
+    		});
+    	}
+
+
+       	function deleteDuck(pato) { //elimina el pato
+       		pato.parentNode.removeChild(pato);
+       	}      
+
+    </script>
+
+  </head>
+    <body>
+      <div id="patos"></div>
+      <div id="agua"></div>
+      <br/>
+      <b>Patos escapados:</b><p id="contador">0</p>
+    </body>
+
+  </html>
